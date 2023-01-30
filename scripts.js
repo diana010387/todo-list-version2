@@ -1,21 +1,22 @@
-const list = JSON.parse(localStorage.getItem('list'))
-//     [
-//     {
-//         id: 'id1',
-//         title: 'Learn JS',
-//         done: true,
-//     },
-//     {
-//         id: 'id2',
-//         title: 'Learn React',
-//         done: false,
-//     },
-//     {
-//         id: 'id3',
-//         title: 'Get a job!',
-//         done: false,
-//     },
-// ];
+const list =
+    //JSON.parse(localStorage.getItem('list'))
+    [
+        {
+            id: 'id1',
+            title: 'Learn JS',
+            done: true,
+        },
+        {
+            id: 'id2',
+            title: 'Learn React',
+            done: false,
+        },
+        {
+            id: 'id3',
+            title: 'Get a job!',
+            done: false,
+        },
+    ];
 const listElement = document.getElementById('list');
 const todoInput = document.getElementById('todoInput')
 
@@ -47,14 +48,14 @@ function render() {
                 for (let i = 0; i < list.length; i++) {
                     if (list[i].title === title) list[i].title = ''
                 }
-                updateLocalStorage()
+                //updateLocalStorage()
                 render();
             }
         })
 
-        // buttonDelete.addEventListener('click', function () {
-        //     this.parentElement.remove();
-        // })
+        buttonDelete.addEventListener('click', function () {
+            this.parentElement.remove();
+        })
 
         buttonItem.addEventListener('click', (event) => {
             if (event.target.nodeName === 'BUTTON') {
@@ -62,7 +63,7 @@ function render() {
                 for (let i = 0; i < list.length; i++) {
                     if (list[i].id === id) list[i].done = !list[i].done;
                 }
-                updateLocalStorage()
+                // updateLocalStorage()
                 render();
             }
         })
@@ -81,9 +82,9 @@ function addToList() {
     })
 
     render();
-    todoInput.innerText.value = ''
+    todoInput.value = '';
 }
 
-function updateLocalStorage() {
-    localStorage.setItem('list', JSON.stringify(list));
-}
+// function updateLocalStorage() {
+//     localStorage.setItem('list', JSON.stringify(list));
+// }

@@ -1,4 +1,4 @@
-const list =
+let list =
     //JSON.parse(localStorage.getItem('list'))
     [
         {
@@ -34,7 +34,7 @@ function render() {
         buttonItem.appendChild(buttonItemText);
 
         const buttonDelete = document.createElement('button');
-        buttonDelete.setAttribute('title', el.title)
+        buttonDelete.setAttribute('id', el.id)
         const buttonDeleteText = document.createTextNode('Delete');
         buttonDelete.appendChild(buttonDeleteText);
 
@@ -42,19 +42,21 @@ function render() {
         listItem.appendChild(buttonItem);
         listItem.appendChild(buttonDelete);
 
-        buttonDelete.addEventListener('click', (event) => {
-            if (event.target.nodeName === 'BUTTON') {
-                const title = event.target.title
-                for (let i = 0; i < list.length; i++) {
-                    if (list[i].title === title) list[i].title = ''
-                }
-                //updateLocalStorage()
-                render();
-            }
-        })
+        // buttonDelete.addEventListener('click', (event) => {
+        //     if (event.target.nodeName === 'BUTTON') {
+        //         const title = event.target.title
+        //         for (let i = 0; i < list.length; i++) {
+        //             if (list[i].title === title) list[i].title = ''
+        //         }
+        //         //updateLocalStorage()
+        //         render();
+        //     }
+        // })
 
-        buttonDelete.addEventListener('click', function () {
-            this.parentElement.remove();
+        buttonDelete.addEventListener('click', (event) => {
+            console.log(event.target.id)
+            list = list.filter(el => el.id !== event.target.id)
+            render();
         })
 
         buttonItem.addEventListener('click', (event) => {
